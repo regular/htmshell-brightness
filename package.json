@@ -1,7 +1,7 @@
 {
   "name": "htmshell-brightness",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple htmshell demo app that adds a backlight brightness control to your desktop",
   "main": "backend.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,5 +14,18 @@
     "combine-streams": "^1.0.0",
     "multistream": "^2.1.0",
     "trumpet": "^1.7.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/regular/htmshell-brightness.git"
+  },
+  "keywords": [
+    "htmshell",
+    "brightness"
+  ],
+  "bugs": {
+    "url": "https://github.com/regular/htmshell-brightness/issues"
+  },
+  "homepage": "https://github.com/regular/htmshell-brightness#readme"
 }

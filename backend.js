@@ -1,4 +1,5 @@
 //jshint esversion:6
+const fs = require('fs');
 const BufferList = require('bl');
 //const multi = require('multistream');
 const combine = require('combine-streams');
@@ -54,8 +55,14 @@ process.on('SIGINT', function () {
     stream.pipe(process.stdout);
 });
 
+const syspath = '/sys/class/backlight/intel_backlight';
+
+let maxBrightness = Number(fs.readFileSync(`${syspath}/max_brightness`, {encoding: 'ascii'}));
+
 function setBrightness(b) {
+    b = Math.round(maxBrightness * b);
     console.log(b);
+    fs.writeFileSync(`${syspath}/brightness`, `${b}`, {encoding: 'ascii'});
 }
 
 const api = {
