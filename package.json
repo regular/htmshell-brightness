@@ -1,0 +1,18 @@
+{
+  "name": "htmshell-brightness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jan Bölsche <jan@lagomorph.de> (http://regular.codes)",
+  "license": "MIT",
+  "dependencies": {
+    "bl": "^1.2.0",
+    "browserify": "^14.1.0",
+    "combine-streams": "^1.0.0",
+    "multistream": "^2.1.0",
+    "trumpet": "^1.7.2"
+  }
+}
