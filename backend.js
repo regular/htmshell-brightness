@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 //jshint esversion:6
 const fs = require('fs');
 const BufferList = require('bl');
@@ -42,6 +43,18 @@ let html = (cookie) =>`
 `;
 const proxy = require('htmshell-proxy/backend');
 const cookie = proxy.randomCookie();
+const syspath = '/sys/class/backlight/intel_backlight';
+
+let maxBrightness = Number(fs.readFileSync(`${syspath}/max_brightness`, {encoding: 'ascii'}));
+let currentBrightness = Number(fs.readFileSync(`${syspath}/brightness`, {encoding: 'ascii'}));
+// fail early in case of permission problems
+try {
+    fs.writeFileSync(`${syspath}/brightness`, `${currentBrightness}`, {encoding: 'ascii'});
+} catch(e) {
+    console.error(`Unable to set backlight brightness: ${e.message}`);
+    process.exit(2);
+}
+
 makeFrontend(html(cookie), './client.js');
 
 process.on('SIGINT', function () {
@@ -54,10 +67,6 @@ process.on('SIGINT', function () {
     });
     stream.pipe(process.stdout);
 });
-
-const syspath = '/sys/class/backlight/intel_backlight';
-
-let maxBrightness = Number(fs.readFileSync(`${syspath}/max_brightness`, {encoding: 'ascii'}));
 
 function setBrightness(b) {
     b = Math.round(maxBrightness * b);
@@ -74,5 +83,5 @@ proxy(cookie, api, (err, ui) => {
         console.error(err);
         process.exit(1);
     }
-    ui.setSliderPosition(0.6);
+    ui.setSliderPosition(currentBrightness / maxBrightness);
 });

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simple htmshell demo app that adds a backlight brightness control to your desktop",
   "main": "backend.js",
+  "bin": {
+    "htmshell-brightness": "backend.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
