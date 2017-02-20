@@ -6,6 +6,7 @@ const BufferList = require('bl');
 const combine = require('combine-streams');
 const trumpet = require('trumpet');
 const browserify = require('browserify');
+const debug = require('debug')('brightness-backend');
 
 const {startAPC, endAPC} = require('html-terminal/apc-sequence');
 
@@ -70,7 +71,7 @@ process.on('SIGINT', function () {
 
 function setBrightness(b) {
     b = Math.round(maxBrightness * b);
-    console.log(b);
+    debug(`set brightness to ${b}`);
     fs.writeFileSync(`${syspath}/brightness`, `${b}`, {encoding: 'ascii'});
 }
 

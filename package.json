@@ -15,6 +15,8 @@
     "bl": "^1.2.0",
     "browserify": "^14.1.0",
     "combine-streams": "^1.0.0",
+    "debug": "^2.6.1",
+    "minimist": "^1.2.0",
     "multistream": "^2.1.0",
     "trumpet": "^1.7.2"
   },
